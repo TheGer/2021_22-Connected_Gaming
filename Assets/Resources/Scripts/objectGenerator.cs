@@ -65,25 +65,23 @@ public class objectGenerator : MonoBehaviour
     //2. generate a frame of squares around the edge of the screen
     void generateFrame()
     {
-        //top row
+        //top and bottom row
         for(float columncounter = -4.5f;columncounter<=4.5f;columncounter++)
         {
             generateSquare(new Vector3(columncounter,4.5f),Quaternion.identity);
-        }
-        //bottom row
-        for(float columncounter = -4.5f;columncounter<=4.5f;columncounter++)
-        {
             generateSquare(new Vector3(columncounter,-4.5f),Quaternion.identity);
         }
-        //first column NO OVERLAP
         
-
-        //last column NO OVERLAP
-
+        //first and last column NO OVERLAP
+        for(float rowcounter = -3.5f;rowcounter<=3.5f;rowcounter++)
+        {
+            generateSquare(new Vector3(-4.5f,rowcounter),Quaternion.identity);
+            generateSquare(new Vector3(4.5f,rowcounter),Quaternion.identity);
+        }        
     }
 
 
-    //3. generate an X of boxes for the entire screen
+    //3. generate an X of boxes for the entire screen, so two diagonals crossing in the middle
     void generateCross()
     {
 
