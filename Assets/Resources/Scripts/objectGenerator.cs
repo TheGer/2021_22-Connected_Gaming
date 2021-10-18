@@ -71,12 +71,14 @@ public class objectGenerator : MonoBehaviour
             generateSquare(new Vector3(columncounter,4.5f),Quaternion.identity);
         }
         //bottom row
+        for(float columncounter = -4.5f;columncounter<=4.5f;columncounter++)
+        {
+            generateSquare(new Vector3(columncounter,-4.5f),Quaternion.identity);
+        }
+        //first column NO OVERLAP
+        
 
-
-        //first column
-
-
-        //last column
+        //last column NO OVERLAP
 
     }
 
