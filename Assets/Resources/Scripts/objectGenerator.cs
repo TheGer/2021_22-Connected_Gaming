@@ -22,6 +22,8 @@ public class objectGenerator : MonoBehaviour
         generateSquare(Vector3.zero,Quaternion.identity);
 
         generateRandomSquare();
+
+        generateFrame();
     }
 
     //method used start controlling the square
@@ -63,6 +65,18 @@ public class objectGenerator : MonoBehaviour
     //2. generate a frame of squares around the edge of the screen
     void generateFrame()
     {
+        //top row
+        for(float columncounter = -4.5f;columncounter<=4.5f;columncounter++)
+        {
+            generateSquare(new Vector3(columncounter,4.5f),Quaternion.identity);
+        }
+        //bottom row
+
+
+        //first column
+
+
+        //last column
 
     }
 
