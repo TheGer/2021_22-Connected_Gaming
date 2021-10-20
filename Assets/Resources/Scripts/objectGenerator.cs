@@ -62,7 +62,9 @@ public class objectGenerator : MonoBehaviour
         listofsquares.Add(sq);
         //give it a unique name
         sq.name = "Square-" + (listofsquares.Count);
+        return sq;
 
+        
     }
 
 
