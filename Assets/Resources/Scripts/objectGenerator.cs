@@ -34,6 +34,9 @@ public class objectGenerator : MonoBehaviour
         StartCoroutine(animateFrame());
     }
 
+    //Task 1.  Modify the coroutine so a red box starts from the bottom left square and goes all the way
+    //around the edge of the screen.
+
     //a typical coroutine
     IEnumerator animateFrame()
     {
