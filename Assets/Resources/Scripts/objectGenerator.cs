@@ -13,10 +13,12 @@ public class objectGenerator : MonoBehaviour
 
     GameObject tempObject;
 
+    bool animate;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        animate = false;
         listofsquares = new List<GameObject>();
         //load the square prefab from a file
         mySquareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");
@@ -28,7 +30,32 @@ public class objectGenerator : MonoBehaviour
       
 
         generateFrame(frameObject.transform);
+
+        StartCoroutine(animateFrame());
     }
+
+    //a typical coroutine
+    IEnumerator animateFrame()
+    {
+        //infinite loop because this is a coroutine
+        while(true)
+        {
+            //if animate is true, animate
+            if (animate)
+            {
+                foreach(GameObject square in listofsquares)
+                {
+                    square.GetComponent<SpriteRenderer>().color = Random.ColorHSV();    
+                }
+                //0.2 second gap between color changes
+                yield return new WaitForSeconds(0.2f);
+            }
+            //if not, do nothing
+            yield return null;
+        }
+    }
+
+
 
     //method used start controlling the square
     void controlSquare()
@@ -64,7 +91,7 @@ public class objectGenerator : MonoBehaviour
         sq.name = "Square-" + (listofsquares.Count);
         return sq;
 
-        
+
     }
 
 
@@ -119,6 +146,11 @@ public class objectGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //flip the value of animate
+            animate = !animate;
+            Debug.Log(animate);
+        }
     }
 }
