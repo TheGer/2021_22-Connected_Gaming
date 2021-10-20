@@ -22,7 +22,7 @@ public class objectGenerator : MonoBehaviour
         mySquareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");
 
         frameObject = new GameObject();
-        frameObject.name = "My Frame;"
+        frameObject.name = "My Frame";
         
         //instantiate it in the center of the screen
       
