@@ -8,6 +8,11 @@ public class objectGenerator : MonoBehaviour
     List<GameObject> listofsquares;
 
     GameObject mySquareToGenerate;
+
+    GameObject frameObject;
+
+    GameObject tempObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +21,13 @@ public class objectGenerator : MonoBehaviour
         //load the square prefab from a file
         mySquareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");
 
-
+        frameObject = new GameObject();
+        frameObject.name = "My Frame;"
         
         //instantiate it in the center of the screen
-        generateSquare(Vector3.zero,Quaternion.identity);
+      
 
-        generateRandomSquare();
-
-        generateFrame();
+        generateFrame(frameObject);
     }
 
     //method used start controlling the square
@@ -49,7 +53,7 @@ public class objectGenerator : MonoBehaviour
 
     }
 
-    void generateSquare(Vector3 position,Quaternion rotation)
+    GameObject generateSquare(Vector3 position,Quaternion rotation)
     {
         GameObject sq = Instantiate(mySquareToGenerate, position,rotation);
         //set a random colour
@@ -63,20 +67,27 @@ public class objectGenerator : MonoBehaviour
 
 
     //2. generate a frame of squares around the edge of the screen
-    void generateFrame()
+    void generateFrame(Transform parent)
     {
+        GameObject tempSquare;
+
         //top and bottom row
         for(float columncounter = -4.5f;columncounter<=4.5f;columncounter++)
         {
-            generateSquare(new Vector3(columncounter,4.5f),Quaternion.identity);
-            generateSquare(new Vector3(columncounter,-4.5f),Quaternion.identity);
+           tempSquare=generateSquare(new Vector3(columncounter,4.5f),Quaternion.identity);
+           tempSquare.transform.parent = parent;
+
+           tempSquare= generateSquare(new Vector3(columncounter,-4.5f),Quaternion.identity);
+           tempSquare.transform.parent = parent;
         }
         
         //first and last column NO OVERLAP
         for(float rowcounter = -3.5f;rowcounter<=3.5f;rowcounter++)
         {
-            generateSquare(new Vector3(-4.5f,rowcounter),Quaternion.identity);
-            generateSquare(new Vector3(4.5f,rowcounter),Quaternion.identity);
+            tempSquare=generateSquare(new Vector3(-4.5f,rowcounter),Quaternion.identity);
+            tempSquare.transform.parent = parent;
+            tempSquare=generateSquare(new Vector3(4.5f,rowcounter),Quaternion.identity);
+            tempSquare.transform.parent = parent;
         }        
     }
 
