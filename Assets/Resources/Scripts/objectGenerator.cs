@@ -27,7 +27,7 @@ public class objectGenerator : MonoBehaviour
         //instantiate it in the center of the screen
       
 
-        generateFrame(frameObject);
+        generateFrame(frameObject.transform);
     }
 
     //method used start controlling the square
