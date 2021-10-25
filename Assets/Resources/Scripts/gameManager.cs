@@ -56,7 +56,7 @@ public class gameManager : MonoBehaviour
             () =>
             {
                 currentPlayer.name = GameObject.Find("nameInputField").GetComponent<Text>().text;
-                Debug.Log("START GAME" + currentPlayer.name);
+                Debug.Log("START GAME" + currentPlayer.playerName);
                 Destroy(loadedStartMenu);
                 //carrierButton.enabled = false;
             }
