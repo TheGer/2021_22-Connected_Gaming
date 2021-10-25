@@ -25,11 +25,15 @@ class Player
     public float averageReactionTime;
     public int currentRound;
 
+    public List<float> reactionTimes;
+
 }
 
 class GameRound
 {
     public int gameRoundNumber;
+
+    public float playerReactionTime;
 
 }
 
@@ -39,13 +43,15 @@ public class gameManager : MonoBehaviour
     Player currentPlayer;
     GameRound currentRound;
    
+    GameObject squareToGenerate;
 
     // Start is called before the first frame update
     void Start()
     {
         currentPlayer = new Player();
         currentRound = new GameRound();
-        currentRound.gameRoundNumber = 1;      
+        currentRound.gameRoundNumber = 1;   
+        squareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");   
     }
 
     //Task 1.  Modify the coroutine so a red box starts from the bottom left square and goes all the way
@@ -75,6 +81,20 @@ public class gameManager : MonoBehaviour
         generateSquare(new Vector3(randomX,randomY),randomAngleQ);
 
     }
+
+    GameObject generateSquare(Vector3 position,Quaternion rotation)
+    {
+        GameObject sq = Instantiate(mySquareToGenerate, position,rotation);
+        //set a random colour
+        sq.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+        //add to list
+        listofsquares.Add(sq);
+        //give it a unique name
+        sq.name = "Square-" + (listofsquares.Count);
+        return sq;
+
+    }
+
 
    
 
