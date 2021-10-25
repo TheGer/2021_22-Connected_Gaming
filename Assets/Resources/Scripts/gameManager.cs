@@ -72,7 +72,7 @@ public class gameManager : MonoBehaviour
         while(counter>=0)
         {
             counter -= 1;
-            loadedCountDown.GetComponentInChildren<Text>().text = counter;
+            loadedCountDown.GetComponentInChildren<Text>().text = counter.toString();
             yield return new WaitForSeconds(1f);
         }
         Debug.Log("coroutine done");
@@ -87,7 +87,7 @@ public class gameManager : MonoBehaviour
         currentRound.gameRoundNumber = 1;   
         squareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");   
         startMenu = Resources.Load<GameObject>("Prefabs/StartMenu");   
-        countDown = Resources.Load<GameObject>("Prefabs/CountDown");   
+        countDownPrefab = Resources.Load<GameObject>("Prefabs/CountDown");   
 
         InitialiseStartMenu();
     }
@@ -95,12 +95,7 @@ public class gameManager : MonoBehaviour
     //Task 1.  Modify the coroutine so a red box starts from the bottom left square and goes all the way
     //around the edge of the screen.
 
-    //a typical coroutine
-    IEnumerator countDown()
-    {
-        //infinite loop because this is a coroutine
-       yield return null;
-    }
+  
 
    
     //1. generate another square at a new random position and colour
