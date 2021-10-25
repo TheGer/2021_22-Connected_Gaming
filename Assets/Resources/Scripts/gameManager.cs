@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 //Connected Gaming Game 1
@@ -45,6 +46,24 @@ public class gameManager : MonoBehaviour
    
     GameObject squareToGenerate;
 
+    GameObject startMenu,loadedStartMenu;
+
+
+    void InitialiseStartMenu()
+    {
+        loadedStartMenu = Instantiate(startMenu,Vector3.zero,Quaternion.identity);
+        GameObject.Find("startButton").GetComponent<Button>().onClick.AddListener(
+            () =>
+            {
+                currentPlayer.name = GameObject.Find("nameInputField").GetComponent<Text>().text;
+                Debug.Log("START GAME" + currentPlayer.name);
+                Destroy(loadedStartMenu);
+                //carrierButton.enabled = false;
+            }
+        );
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +71,9 @@ public class gameManager : MonoBehaviour
         currentRound = new GameRound();
         currentRound.gameRoundNumber = 1;   
         squareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");   
+        startMenu = Resources.Load<GameObject>("Prefabs/StartMenu");   
+
+        InitialiseStartMenu();
     }
 
     //Task 1.  Modify the coroutine so a red box starts from the bottom left square and goes all the way
@@ -108,6 +130,9 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+       if (Input.GetKeyDown(KeyCode.Space))
+       {
+           Destroy(loadedStartMenu);
+       }
     }
 }
