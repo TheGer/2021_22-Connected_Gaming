@@ -3,6 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//Connected Gaming Game 1
+
+//10 round game for each player.
+//At the beginning of the game, we are going to ask for the player name
+//The player is going to be testing his actual reaction time
+//For each round, we will have a count down of 3 seconds.
+//After those 3 seconds, the game will wait for a random number of seconds before 
+//spawning a square in a random location.
+//The player will need to click on the randomly located square
+//The time taken for the player to see the square and click it will be stored
+//That time will be stored, and the round ends.  A next round button is displayed
+//The player again will be presented with a three second countdown
+//and his reaction time will be tested again.
+//After ten rounds, we will calculate the average reaction time, and display it to the player.
+
+
+
+
+
+
 public class objectGenerator : MonoBehaviour
 {
     List<GameObject> listofsquares;
