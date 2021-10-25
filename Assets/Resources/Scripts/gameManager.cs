@@ -68,11 +68,11 @@ public class gameManager : MonoBehaviour
     IEnumerator startCountDown()
     {
         loadedCountDown = Instantiate(countDownPrefab,Vector3.zero,Quaternion.identity);
-        int counter = 3;
+        int counter = 4;
         while(counter>=0)
         {
             counter -= 1;
-            loadedCountDown.GetComponentInChildren<Text>().text = counter.toString();
+            loadedCountDown.GetComponentInChildren<Text>().text = counter.ToString();
             yield return new WaitForSeconds(1f);
         }
         Debug.Log("coroutine done");
