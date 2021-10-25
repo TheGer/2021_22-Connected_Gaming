@@ -46,7 +46,7 @@ public class gameManager : MonoBehaviour
    
     GameObject squareToGenerate;
 
-    GameObject startMenu,loadedStartMenu;
+    GameObject startMenu,loadedStartMenu,countDownPrefab,loadedCountDown;
 
 
     void InitialiseStartMenu()
@@ -58,10 +58,25 @@ public class gameManager : MonoBehaviour
                 currentPlayer.playerName = GameObject.Find("nameInputField").GetComponent<InputField>().text;
                 Debug.Log("START GAME" + currentPlayer.playerName);
                 Destroy(loadedStartMenu);
+                StartCoroutine(startCountDown());
                 //carrierButton.enabled = false;
             }
         );
 
+    }
+
+    IEnumerator startCountDown()
+    {
+        loadedCountDown = Instantiate(countDownPrefab,Vector3.zero,Quaternion.identity);
+        int counter = 3;
+        while(counter>=0)
+        {
+            counter -= 1;
+            loadedCountDown.GetComponentInChildren<Text>().text = counter;
+            yield return new WaitForSeconds(1f);
+        }
+        Debug.Log("coroutine done");
+        yield return null;
     }
 
     // Start is called before the first frame update
@@ -72,6 +87,7 @@ public class gameManager : MonoBehaviour
         currentRound.gameRoundNumber = 1;   
         squareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");   
         startMenu = Resources.Load<GameObject>("Prefabs/StartMenu");   
+        countDown = Resources.Load<GameObject>("Prefabs/CountDown");   
 
         InitialiseStartMenu();
     }
