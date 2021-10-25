@@ -89,7 +89,7 @@ public class gameManager : MonoBehaviour
         sq.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
         //add to list
         //give it a unique name
-        sq.name = "Square-" + (listofsquares.Count);
+        sq.name = "Square-" + (currentRound.gameRoundNumber);
         return sq;
 
     }
