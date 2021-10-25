@@ -84,11 +84,10 @@ public class gameManager : MonoBehaviour
 
     GameObject generateSquare(Vector3 position,Quaternion rotation)
     {
-        GameObject sq = Instantiate(mySquareToGenerate, position,rotation);
+        GameObject sq = Instantiate(squareToGenerate, position,rotation);
         //set a random colour
         sq.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
         //add to list
-        listofsquares.Add(sq);
         //give it a unique name
         sq.name = "Square-" + (listofsquares.Count);
         return sq;
