@@ -105,6 +105,11 @@ public class gameManager : MonoBehaviour
 
     }
 
+    //every time the player clicks, you are going to save the difference in time between the box being created and the player clicking
+    //and you are going to increase the current round value.  Display the current round as text in the top left corner of the screen. (for next week)
+
+    
+
 
     // Start is called before the first frame update
     void Start()
