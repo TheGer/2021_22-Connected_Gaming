@@ -59,8 +59,8 @@ public class gameManager : MonoBehaviour
                 currentPlayer.playerName = GameObject.Find("nameInputField").GetComponent<InputField>().text;
                 Debug.Log("START GAME" + currentPlayer.playerName);
                 Destroy(loadedStartMenu);
-                yield return StartCoroutine(startCountDown());
-                yield return StartCoroutine(spawnRandomBox());
+                StartCoroutine(startCountDown());
+                
                 //carrierButton.enabled = false;
             }
         );
@@ -78,7 +78,8 @@ public class gameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         Debug.Log("coroutine done");
-        yield return null;
+        //call random box afterwards
+        yield return spawnRandomBox();
     }
 
 
@@ -95,6 +96,8 @@ public class gameManager : MonoBehaviour
         enemyBox.transform.localScale = new Vector3(0.25f,0.25f);
         //add a component to the enemy box
         enemyBox.AddComponent<BoxCollider2D>();
+
+        yield return null;
 
     }
 
