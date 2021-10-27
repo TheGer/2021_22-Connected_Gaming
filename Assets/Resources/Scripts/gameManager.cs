@@ -92,7 +92,9 @@ public class gameManager : MonoBehaviour
         //the time when the box is spawned
         startTime = Time.time;
         //spawn the box in the shape of a diamond
-        enemyBox = Instantiate(squareToGenerate,new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-4.5f,4.5f)),Quaternion.eulerAngles(0f,0f,45f));
+        Quaternion diamondRotation = Quaternion.identity;
+        diamondRotation.eulerAngles = new Vector3(0f,0f,45f);
+        enemyBox = Instantiate(squareToGenerate,new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-4.5f,4.5f)),diamondRotation);
         enemyBox.transform.localScale = new Vector3(0.25f,0.25f);
         //add a component to the enemy box
         enemyBox.AddComponent<BoxCollider2D>();
