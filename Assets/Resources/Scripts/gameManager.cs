@@ -77,7 +77,7 @@ public class gameManager : MonoBehaviour
             counter -= 1;
             yield return new WaitForSeconds(1f);
         }
-        Debug.Log("coroutine done");
+        Debug.Log("coroutine 1 done");
         //call random box afterwards
         yield return spawnRandomBox();
     }
@@ -87,18 +87,20 @@ public class gameManager : MonoBehaviour
     //and spawn a box.
     IEnumerator spawnRandomBox()
     {
+        Destroy(loadedCountDown);
+        Debug.Log("coroutine 2 started");
         //wait for a random interval
-        yield return new WaitForSeconds(Random.Range(0.2f,2f));
+        yield return new WaitForSeconds(Random.Range(0.2f, 2f));
         //the time when the box is spawned
         startTime = Time.time;
         //spawn the box in the shape of a diamond
         Quaternion diamondRotation = Quaternion.identity;
-        diamondRotation.eulerAngles = new Vector3(0f,0f,45f);
-        enemyBox = Instantiate(squareToGenerate,new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-4.5f,4.5f)),diamondRotation);
-        enemyBox.transform.localScale = new Vector3(0.25f,0.25f);
+        diamondRotation.eulerAngles = new Vector3(0f, 0f, 45f);
+        enemyBox = Instantiate(squareToGenerate, new Vector3(Random.Range(-4.5f, 4.5f), Random.Range(-4.5f, 4.5f)), diamondRotation);
+        enemyBox.transform.localScale = new Vector3(0.25f, 0.25f);
         //add a component to the enemy box
         enemyBox.AddComponent<BoxCollider2D>();
-
+        Debug.Log("coroutine 2 done");
         yield return null;
 
     }
