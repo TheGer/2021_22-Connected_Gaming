@@ -44,10 +44,11 @@ public class gameManager : MonoBehaviour
     Player currentPlayer;
     GameRound currentRound;
    
-    GameObject squareToGenerate;
+    GameObject squareToGenerate,enemyBox;
 
     GameObject startMenu,loadedStartMenu,countDownPrefab,loadedCountDown;
 
+    float startTime,clickTime;
 
     void InitialiseStartMenu()
     {
@@ -58,7 +59,8 @@ public class gameManager : MonoBehaviour
                 currentPlayer.playerName = GameObject.Find("nameInputField").GetComponent<InputField>().text;
                 Debug.Log("START GAME" + currentPlayer.playerName);
                 Destroy(loadedStartMenu);
-                StartCoroutine(startCountDown());
+                yield return StartCoroutine(startCountDown());
+                yield return StartCoroutine(spawnRandomBox());
                 //carrierButton.enabled = false;
             }
         );
@@ -78,6 +80,24 @@ public class gameManager : MonoBehaviour
         Debug.Log("coroutine done");
         yield return null;
     }
+
+
+    //After the countdown finishes, I want to save the current time, wait a random amount of time
+    //and spawn a box.
+    IEnumerator spawnRandomBox()
+    {
+        //wait for a random interval
+        yield return new WaitForSeconds(Random.Range(0.2f,2f));
+        //the time when the box is spawned
+        startTime = Time.time;
+        //spawn the box in the shape of a diamond
+        enemyBox = Instantiate(squareToGenerate,new Vector3(Random.Range(-4.5f,4.5f),Random.Range(-4.5f,4.5f)),Quaternion.eulerAngles(0f,0f,45f));
+        enemyBox.transform.localScale = new Vector3(0.25f,0.25f);
+        //add a component to the enemy box
+        enemyBox.AddComponent<BoxCollider2D>();
+
+    }
+
 
     // Start is called before the first frame update
     void Start()
