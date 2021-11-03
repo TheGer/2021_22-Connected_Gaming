@@ -105,6 +105,8 @@ public class gameManager : MonoBehaviour
 
     }
 
+
+
     //every time the player clicks, you are going to save the difference in time between the box being created and the player clicking
     //and you are going to increase the current round value.  Display the current round as text in the top left corner of the screen. (for next week)
 
@@ -176,6 +178,21 @@ public class gameManager : MonoBehaviour
        if (Input.GetKeyDown(KeyCode.Space))
        {
            Destroy(loadedStartMenu);
+       }
+
+       //checking whether I have clicked the left click mouse
+       if (Input.GetMouseButtonDown(0))
+       {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //imagine a straight line into the monitor
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector3.forward);
+            //so if there is a gameobject here
+            if (hit.collider.gameObject !=null)
+            {
+                Debug.Log(hit.collider.gameObject.name);
+                Destroy(hit.collider.gameObject);
+            }
+
        }
     }
 }
