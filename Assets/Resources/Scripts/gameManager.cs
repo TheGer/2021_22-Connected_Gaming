@@ -26,7 +26,19 @@ class Player
     public float averageReactionTime;
     public int currentRound;
 
-    public List<float> reactionTimes;
+    public List<GameRound> timings;
+
+    public float calculateAverageReactionTime()
+    {
+        int totalRounds = timings.Count;
+        float totalTime = 0;
+        foreach(GameRound round in timings)
+        {
+            totalTime += round.playerReactionTime;
+        }
+
+        return totalTime / totalRounds;
+    }
 
 }
 
@@ -181,13 +193,15 @@ public class gameManager : MonoBehaviour
        }
 
        //checking whether I have clicked the left click mouse
+
+       //create a UI showing a timer on the top right corner
        if (Input.GetMouseButtonDown(0))
        {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //imagine a straight line into the monitor
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector3.forward);
             //so if there is a gameobject here
-            if (hit !=null)
+            if (hit.collider !=null)
             {
                 Debug.Log(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
