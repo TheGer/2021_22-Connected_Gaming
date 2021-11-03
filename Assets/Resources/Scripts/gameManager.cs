@@ -28,6 +28,11 @@ class Player
 
     public List<GameRound> timings;
 
+    public Player()
+    {
+        timings = new List<GameRound>();
+    }
+
     public float calculateAverageReactionTime()
     {
         int totalRounds = timings.Count;
