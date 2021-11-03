@@ -44,8 +44,6 @@ class Player
 
 class GameRound
 {
-    public int gameRoundNumber;
-
     public float playerReactionTime;
 
 }
@@ -129,8 +127,6 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         currentPlayer = new Player();
-        currentRound = new GameRound();
-        currentRound.gameRoundNumber = 1;   
         squareToGenerate = Resources.Load<GameObject>("Prefabs/MySquare");   
         startMenu = Resources.Load<GameObject>("Prefabs/StartMenu");   
         countDownPrefab = Resources.Load<GameObject>("Prefabs/CountDown");   
@@ -168,7 +164,7 @@ public class gameManager : MonoBehaviour
         sq.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
         //add to list
         //give it a unique name
-        sq.name = "Square-" + (currentRound.gameRoundNumber);
+        sq.name = "Square-" + (currentPlayer.currentRound);
         return sq;
 
     }
@@ -203,6 +199,13 @@ public class gameManager : MonoBehaviour
             //so if there is a gameobject here
             if (hit.collider !=null)
             {
+                clickTime = Time.time;
+                float reactionTime = clickTime - startTime;
+                GameRound currentRound = new GameRound();
+                currentRound.playerReactionTime = reactionTime;
+                currentPlayer.timings.Add(currentRound);
+                currentPlayer.currentRound++;
+                Debug.Log(currentPlayer.currentRound);
                 Debug.Log(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
             }
