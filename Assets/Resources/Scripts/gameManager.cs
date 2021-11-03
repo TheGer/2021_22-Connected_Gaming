@@ -187,7 +187,7 @@ public class gameManager : MonoBehaviour
             //imagine a straight line into the monitor
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector3.forward);
             //so if there is a gameobject here
-            if (hit.collider.gameObject !=null)
+            if (hit !=null)
             {
                 Debug.Log(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
