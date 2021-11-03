@@ -177,7 +177,7 @@ public class gameManager : MonoBehaviour
 
     }
 
-
+    //Display of all the timings of the player over 10 rounds with the average at the bottom
 
 
     // Update is called once per frame
@@ -205,9 +205,11 @@ public class gameManager : MonoBehaviour
                 currentRound.playerReactionTime = reactionTime;
                 currentPlayer.timings.Add(currentRound);
                 currentPlayer.currentRound++;
+                Debug.Log(reactionTime);
                 Debug.Log(currentPlayer.currentRound);
                 Debug.Log(hit.collider.gameObject.name);
                 Destroy(hit.collider.gameObject);
+                StartCoroutine(startCountDown());
             }
 
        }
